@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <header>
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+        <a href="/logout">Logout</a>
+        <!-- start: for account debugging only -->
+        <span class="right-sep">
+            Login status: 
+            {% if current_user.is_authenticated %}
+                {{ current_user.username }}
+            {% else %}
+                Not logged in
+            {% endif %}
+        </span>
+        <!-- end: for account debugging only -->
+    </header>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    {% block content %}
+
+    {% endblock %}
+
+</body>
+</html>
