@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='image-form.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2>Submit food image</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.photo.label(id='img-input-box') }}
+    {{ form.photo() }}
+    <button id="clear">Clear</button>
+    {{ form.submit() }}
+</form>
+<script>
+    const image_src = document.getElementById('photo')
+    const clear = document.getElementById('clear')
+    const input_box = document.getElementById('img-input-box')
+    image_src.oninput = () => {
+        const reader = new FileReader()
+        reader.onload = e => {
+            const img_display = document.createElement('img')
+            img_display.classList.add('img-display')
+            img_display.src = e.target.result
+            input_box.innerHTML = null
+            input_box.append(img_display)
+        }
+        reader.readAsDataURL(image_src.files[0])
+    }
+    clear.onclick = (e) => {
+        e.preventDefault()
+        input_box.innerHTML = 'Upload photo here'
+    }
+</script>
+{% endblock %}

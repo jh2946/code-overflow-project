@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, request
 from app import app, db, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 from app.models import User
-from app.forms import RegistrationForm, LoginForm
+from app.forms import RegistrationForm, LoginForm, UploadForm
 
 @app.route('/')
 def index():
@@ -37,6 +37,11 @@ def login():
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
+
+@app.route('/submit')
+def submit():
+    form = UploadForm()
+    return render_template('submit.html', title='Submit', form=form)
 
 @app.route('/logout')
 def logout():

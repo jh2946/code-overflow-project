@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from flask_wtf.file import FileField, FileRequired, FileAllowed
 from wtforms.validators import DataRequired, Length, Email, ValidationError
+from app import ALLOWED_EXTENSIONS
 from app.models import User
 
 
@@ -29,3 +31,7 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
+
+class UploadForm(FlaskForm):
+    photo = FileField('Upload photo here', validators=[FileAllowed(ALLOWED_EXTENSIONS), FileRequired('File was empty!')])
+    submit = SubmitField('Submit')
