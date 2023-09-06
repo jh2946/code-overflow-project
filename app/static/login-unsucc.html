@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="../styles/login.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
     <header>
@@ -13,20 +13,18 @@
         <a href="/logout">Logout</a>
     </header>
     <h2>Login</h2>
-    
-    <div id="unsuc-alert">
-        <span class="red-color">Login Unsuccessful. Please check email and password</span>
-        <!-- Error message, appear when login is wrong -->
+    <div>
+        <span>Login Unsuccessful. Please check email and password</span>
+        <!-- this is an error message, preferably put in red -->
     </div>
-
     <form method="POST">
         <div>
             <label for="email">Email</label>
-            <input type="text" name="email" requried>
+            <input type="text" name="email">
         </div>
         <div>
             <label for="password">Password</label>
-            <input type="password" name="password" required>
+            <input type="password" name="password">
         </div>
         <div>
             <input type="checkbox" name="remember">
