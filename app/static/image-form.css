@@ -12,10 +12,6 @@ label#img-input-box {
     justify-content: center;
 }
 
-.invisible {
-    display: none !important;
-}
-
 img.img-display {
     max-width: 30vw;
     max-height: 30vh;

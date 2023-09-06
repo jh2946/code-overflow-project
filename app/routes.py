@@ -1,7 +1,10 @@
-from flask import render_template, url_for, flash, redirect, request
+import secrets
+import os
+from flask import render_template, url_for, flash, redirect, request, send_file
 from app import app, db, bcrypt
+from werkzeug.utils import secure_filename
 from flask_login import login_user, current_user, logout_user, login_required
-from app.models import User
+from app.models import User, Submission
 from app.forms import RegistrationForm, LoginForm, UploadForm
 
 @app.route('/')
@@ -38,9 +41,20 @@ def login():
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
 
-@app.route('/submit')
+@app.route('/uploads')
+def uploads():
+    return send_file(os.path.join(app.config['UPLOAD_FOLDER'], request.args['filename']))
+
+@app.route('/submit', methods=['GET', 'POST'])
 def submit():
     form = UploadForm()
+    if form.validate_on_submit():
+        file = request.files['photo']
+        filename = secrets.token_urlsafe(16)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        print(url_for('uploads', filename=filename))
+    else:
+        print('error', form.errors)
     return render_template('submit.html', title='Submit', form=form)
 
 @app.route('/logout')

@@ -9,7 +9,7 @@ load_dotenv()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
-app.config['UPLOAD_FOLDER'] = 'uploads/'
+app.config['UPLOAD_FOLDER'] = os.path.abspath('app/uploads/')
 ALLOWED_EXTENSIONS = {'png', 'jpeg', 'jpg'}
 app.app_context().push()
 db = SQLAlchemy(app)
