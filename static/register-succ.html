@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+    <header>
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+        <a href="/logout">Logout</a>
+    </header>
+    <h2>Login</h2>
+    <div>
+        <span>Your account has been created! You are now able to log in</span>
+        <!-- this is a success message, preferably put it in green -->
+    </div>
+    <form method="POST">
+        <div>
+            <label for="email">Email</label>
+            <input type="text" name="email">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password">
+        </div>
+        <div>
+            <input type="checkbox" name="remember">
+            <label for="remember">Remember me</label>
+        </div>
+        <input type="submit">
+    </form>
+
+</body>
+</html>
