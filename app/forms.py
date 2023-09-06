@@ -33,5 +33,5 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class UploadForm(FlaskForm):
-    photo = FileField('Upload photo here', validators=[FileAllowed(ALLOWED_EXTENSIONS), FileRequired('File was empty!')])
+    photo = FileField('Upload photo here', validators=[FileAllowed(ALLOWED_EXTENSIONS, 'Invalid file extension'), FileRequired('File was empty!')])
     submit = SubmitField('Submit')
