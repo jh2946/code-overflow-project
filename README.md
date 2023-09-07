@@ -4,10 +4,11 @@ use pyenv here and download/install it: https://github.com/pyenv/pyenv/releases/
 In the terminal, install python 3.8.9 by running this: pyenv install 3.8.9
 go to vscode, press ctrl + shift + p and type "Python interpreter" and choose that, then select the python 3.8.9 interpreter there
 
+download the model [here](https://drive.google.com/file/d/1KRqgUHN0cHoz_9lmi36EREdUL8lxkzyk/view?usp=sharing), then move it to the root directory (the one containing main.py as a child). it's too big to fit in this github repo
+
 Open up the terminal in vscode, type pip install -r requirements.txt
 run the website by typing python app.py
 
-download the model [here](https://drive.google.com/file/d/1KRqgUHN0cHoz_9lmi36EREdUL8lxkzyk/view?usp=sharing), then move it to the root directory (the one containing main.py as a child). it's too big to fit in this github repo
 
 
 
