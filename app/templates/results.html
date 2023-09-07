@@ -1,9 +1,10 @@
 {% extends 'layout.html' %}
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 {% block content %}
 <h1>Results</h1>
 
 <ul>
-    <!-- <li><a class="active" href="/">Home</a></li> -->`
     <li>
         <a class="active" href="/submit">Click here to go back and upload more images.</a>
     </li>
@@ -47,8 +48,7 @@
         </div>
     </fieldset>
 {% endfor %}
-<br/>
-<br/>
+
 <h2 align="center">Nutrition Report</h2>
         <div id="piechart" style="height: 500px; margin:auto;">
             <script type="text/javascript">

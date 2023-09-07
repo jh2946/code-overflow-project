@@ -221,7 +221,8 @@ def predict():
         top = pred.argsort()[0][-3:]
         label.sort()
         _true = label[top[2]]
-        pa['image'] = f'{app.config["UPLOAD_FOLDER"]}/{i + 500}.jpg'
+        # pa['image'] = f'{app.config["UPLOAD_FOLDER"]}/{i + 500}.jpg'
+        pa['image'] = filename
         x = dict()
         x[_true] = float("{:.2f}".format(pred[0][top[2]] * 100))
         x[label[top[1]]] = float("{:.2f}".format(pred[0][top[1]] * 100))
