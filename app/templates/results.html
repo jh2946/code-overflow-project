@@ -10,44 +10,31 @@
     </li>
 </ul>
 
-{% for p in pack %}
-    <br/>
-    <fieldset>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4">
-                    <img src="{{ p.image }}" width="400" height="400" />
-                </div>
-                <div class="col-sm-4">
-                    <table>
-                        <thead>
-                        <th>Name</th>
-                        <th>Probability(%)</th>
-                        </thead>
-                        <tbody>
-                        {% for key,value in p.result.items() %}
-                            <tr>
-                                <td>{{ key }}</td>
-                                <td>{{ value }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                    <a href="{{ p.food }}" target="_blank"
-                    >Click here for more nutrition information.
-                    </a>
-                </div>
-                <div class="col-sm-4">
-                    <form action="/update" method="POST">
-              <span>Enter quantity for food(g):</span
-              ><input type="number" name="q" value="{{ p.quantity }}"/>
-                        <input type="submit" name="s" value="Submit"/>
-                    </form>
-                </div>
+<br/>
+<fieldset>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="{{ p.image }}" width="400" height="400" />
+            </div>
+            <div class="col-sm-4">
+                {% for category in p.result.keys() %}
+                    <p>{{ category }}</p>
+                {% endfor %}
+                <a href="{{ p.food }}" target="_blank"
+                >Click here for more nutrition information.
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <form action="/update" method="POST">
+            <span>Enter quantity for food(g):</span
+            ><input type="number" name="q" value="{{ p.quantity }}"/>
+                    <input type="submit" name="s" value="Submit"/>
+                </form>
             </div>
         </div>
-    </fieldset>
-{% endfor %}
+    </div>
+</fieldset>
 
 <h2 align="center">Nutrition Report</h2>
         <div id="piechart" style="height: 500px; margin:auto;">
