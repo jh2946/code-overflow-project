@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='history.css') }}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script>
+    let time
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="spacing"></div>
+{% for submission in history %}
+    <div class="history-unit">
+        <div class="image">
+            <img src="{{ submission.image }}" alt="{{ submission.name }}">
+        </div>
+        <div class="description">
+            <p>
+                <script>
+                    time = {{ submission.timestamp|safe }}
+                    document.write(moment(new Date(time*1000)).format('D MMM YYYY h:mm a'))
+                </script>
+            </p>
+            <h3>{{ submission.name }}</h3>
+            <p>Nett amount: {{ submission.quantity }}g</p>
+            <p>Amount of protein: {{ submission.protein }}g</p>
+            <p>Amount of fat: {{ submission.fat }}g</p>
+            <p>Amount of carbohydrates: {{ submission.carbohydrates }}g</p>
+        </div>
+    </div>
+{% endfor %}
+
+
+{% endblock %}

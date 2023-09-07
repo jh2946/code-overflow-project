@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, FloatField
 from flask_wtf.file import FileField, FileRequired, FileAllowed
-from wtforms.validators import DataRequired, Length, Email, ValidationError
+from wtforms.validators import DataRequired, Length, Email, ValidationError, NumberRange
 from app import ALLOWED_EXTENSIONS
 from app.models import User
 
@@ -35,3 +35,9 @@ class LoginForm(FlaskForm):
 class UploadForm(FlaskForm):
     photo = FileField('Upload photo here', validators=[FileAllowed(ALLOWED_EXTENSIONS, 'Invalid file extension'), FileRequired('File was empty!')])
     submit = SubmitField('Submit')
+
+class ResultsForm(FlaskForm):
+    quantity = FloatField('Quantity of food (g):', validators=[NumberRange(min=0, max=20000)])
+    name = StringField('')
+    info = StringField('')
+    filename = StringField('')

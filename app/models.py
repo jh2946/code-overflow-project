@@ -18,5 +18,7 @@ class Submission(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     image_file = db.Column(db.String(22), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    name = db.Column(db.String(100), nullable=False)
+    quantity = db.Column(db.Float, nullable=False)
     info = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)

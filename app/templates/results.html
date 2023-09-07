@@ -1,6 +1,10 @@
 {% extends 'layout.html' %}
+{% block head %}
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}">
+{% endblock %}
+
 {% block content %}
 <h1>Results</h1>
 
@@ -18,18 +22,19 @@
                 <img src="{{ p.image }}" width="400" height="400" />
             </div>
             <div class="col-sm-4">
-                {% for category in p.result.keys() %}
-                    <p>{{ category }}</p>
-                {% endfor %}
+                <p>{{ p.result }}</p>
                 <a href="{{ p.food }}" target="_blank"
                 >Click here for more nutrition information.
                 </a>
             </div>
             <div class="col-sm-4">
-                <form action="/update" method="POST">
-            <span>Enter quantity for food(g):</span
-            ><input type="number" name="q" value="{{ p.quantity }}"/>
+                <form action="/history" method="POST">
+                    <span>Enter quantity for food(g):</span>
+                    <input type="number" name="quantity" value="{{ p.quantity }}"/>
                     <input type="submit" name="s" value="Submit"/>
+                    <input type="text" name="name" class="invisible" value="{{ p.result }}">
+                    <input type="text" name="info" class="invisible" value="{{ p.nutrition }}">
+                    <input type="text" name="image" class="invisible" value="{{ p.image }}">
                 </form>
             </div>
         </div>
@@ -41,16 +46,18 @@
             <script type="text/javascript">
                 // Load google charts
                 google.charts.load('current', {'packages': ['corechart']});
+                console.log('hello')
                 google.charts.setOnLoadCallback(drawChart);
 
                 // Draw the chart and set the chart values
                 function drawChart() {
-                    let dataset = [];
-                    dataset.push(['name', 'value']);
-                    let wholefood = {{ whole_nutrition|safe }};
-                    wholefood.forEach(element => dataset.push([element.name, element.value]));
-                    console.log(dataset)
-                    let data = google.visualization.arrayToDataTable(dataset);
+                    console.log('hi')
+                    console.log({{ p.nutrition|safe }})
+                    let dataset = Object.entries({{ p.nutrition|safe }})
+                    let data = new google.visualization.DataTable()
+                    data.addColumn('string', 'Macronutrients')
+                    data.addColumn('number', 'Amount(g)/100g')
+                    data.addRows(dataset)
 
                     // Optional; add a title and set the width and height of the chart
                     let options = {is3D: false};

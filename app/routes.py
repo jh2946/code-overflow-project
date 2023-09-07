@@ -1,6 +1,8 @@
 import secrets
 import os
 import math
+import json
+from datetime import datetime
 import numpy as np
 from werkzeug.utils import secure_filename
 from tensorflow.keras.preprocessing import image
@@ -30,18 +32,6 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
-@app.route('/submit', methods=['GET', 'POST'])
-def submit():
-    form = UploadForm()
-    # if form.validate_on_submit():
-    #     file = request.files['photo']
-    #     filename = secrets.token_urlsafe(16) + ""
-    #     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    #     print(url_for('uploads', filename=filename))
-    # else:
-    #     print('error', form.errors) separate uploading logic from page and form to another route
-    return render_template('submit.html', title='Submit', form=form)
- # submit just loads the page, then the post request is to upload/ then predict/ which then loads results.html
 start = [0]
 passed = [0]
 pack = [[]]
@@ -156,13 +146,7 @@ label = ['apple pie',
          'tuna tartare',
          'waffles'] # sorry
 nu_link = 'https://www.nutritionix.com/food/'
-nutrients = [
-    {'name': 'protein', 'value': 0.0},
-    {'name': 'calcium', 'value': 0.0},
-    {'name': 'fat', 'value': 0.0},
-    {'name': 'carbohydrates', 'value': 0.0},
-    {'name': 'vitamins', 'value': 0.0}
-]
+nutrients = ['protein', 'fat', 'carbohydrates']
 
 with open('nutrition101.csv', 'r') as file:
     reader = csv.reader(file)
@@ -173,13 +157,52 @@ with open('nutrition101.csv', 'r') as file:
             continue
         else:
             name = row[1].strip()
-        nutrition_table[name] = [
-            {'name': 'protein', 'value': float(row[2])},
-            {'name': 'calcium', 'value': float(row[3])},
-            {'name': 'fat', 'value': float(row[4])},
-            {'name': 'carbohydrates', 'value': float(row[5])},
-            {'name': 'vitamins', 'value': float(row[6])}
-        ]
+        nutrition_table[name] = {
+            'protein': float(row[2]),
+            'fat': float(row[4]),
+            'carbohydrates': float(row[5])
+        }
+
+@app.route('/history', methods=['GET', 'POST'])
+def history():
+    
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
+    if request.method == 'POST':
+        qty = float(request.form['quantity'])
+        info = json.loads(request.form['info'].replace('\'', '"'))
+        for i in info:
+            info[i] = f'{qty * float(info[i]) / 100:.2f}'
+        submission = Submission(image_file=request.form['image'],
+                                info=request.form['info'],
+                                name=request.form['name'],
+                                quantity=request.form['quantity'],
+                                user_id=current_user.id)
+        db.session.add(submission)
+        db.session.commit()
+        return redirect(url_for('history'))
+    submissions = Submission.query.filter_by(user_id=current_user.id).all()
+    history = []
+    for i in submissions:
+        nutrients = json.loads(i.info.replace('\'', '"'))
+        history.append({
+            'name': i.name,
+            'timestamp': datetime.timestamp(i.created_at),
+            'image': i.image_file,
+            'quantity': i.quantity,
+            'protein': nutrients['protein'],
+            'fat': nutrients['fat'],
+            'carbohydrates': nutrients['carbohydrates'],
+        })
+    return render_template('history.html', history=history)
+
+@app.route('/submit', methods=['GET', 'POST'])
+def submit():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
+    form = UploadForm()
+    return render_template('submit.html', title='Submit', form=form)
+
 @app.route('/upload', methods=['POST'])
 def upload():
     tensorflow.keras.backend.clear_session()
@@ -205,11 +228,7 @@ def upload():
     _true = label[top[2]]
     # pa['image'] = f'{app.config["UPLOAD_FOLDER"]}/{i + 500}.jpg'
     pa['image'] = f'/uploads?filename={filename}'
-    x = dict()
-    x[_true] = float("{:.2f}".format(pred[0][top[2]] * 100))
-    x[label[top[1]]] = float("{:.2f}".format(pred[0][top[1]] * 100))
-    x[label[top[0]]] = float("{:.2f}".format(pred[0][top[0]] * 100))
-    pa['result'] = x
+    pa['result'] = _true
     pa['nutrition'] = nutrition_table[_true]
     pa['food'] = f'{nu_link}{_true}'
     pa['idx'] = i - start[0]
@@ -228,7 +247,7 @@ def login():
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('index'))
         else:
-            flash('Login Unsuccessful. Please check email and password', 'danger')
+            flash('Login Unsuccessful. Please check email and password')
     return render_template('login.html', title='Login', form=form)
 
 @app.route('/uploads')
