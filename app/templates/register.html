@@ -4,7 +4,7 @@
 <form method="POST">
     {{ form.hidden_tag() }}
     <div>
-        {{ form.username.label() }}
+        <span>Username:</span>{{ form.username.label() }}
         {{ form.username() }}
         {% if form.username.errors %}
             {% for error in form.username.errors %}
@@ -13,7 +13,7 @@
         {% endif %}
     </div>
     <div>
-        {{ form.email.label() }}
+        <span>Email:</span>{{ form.email.label() }}
         {{ form.email() }}
         {% if form.email.errors %}
             {% for error in form.email.errors %}
@@ -22,7 +22,7 @@
         {% endif %}
     </div>
     <div>
-        {{ form.password.label() }}
+        <span>Password:</span>{{ form.password.label() }}
         {{ form.password() }}
         {% if form.password.errors %}
             {% for error in form.password.errors %}

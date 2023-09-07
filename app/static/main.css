@@ -1,5 +1,4 @@
-body {
-    background: radial-gradient(circle at 50% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.5%);
+/* body {
     color: darkgreen;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -38,4 +37,596 @@ header a:hover {
 
 header {
     background-color: darkgreen;
+} */
+
+/* @import url('https://fonts.googleapis.com/css?family=Inconsolata:wght@300&display=swap'); */
+/* light mode */
+html {
+    scroll-behavior: smooth;
+}
+
+input[type=button], input[type=submit], input[type=reset], input[type=file] {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+:root {
+    --background: #dce0e8;
+    --background2: #e6e9ef;
+    --foreground: #4c4f69;
+    --date: #ea76cb;
+    --navbar: #e6e9ef;
+    --navsel: #dd7878;
+    --navhover: #dc8a78;
+    --link: #179299;
+    --linkhover: #40a02b;
+}
+
+/* dark mode*/
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #11111b;
+        --background2: #1e1e2e;
+        --foreground: rgba(205, 214, 244, 1);
+        --date: #f5c2e7;
+        --navbar: #1e1e2e;
+        --navsel: #ca9ee6;
+        --navhover: #cba6f7;
+        --link: var(--date);
+        --linkhover: #f5c2e7;
+        --border: rgb(3, 169, 244);
+        --g1: rgb(98, 0, 234);
+        --g2: rgb(236, 64, 122);
+        --g3: rgb(253, 216, 53);
+    }
+}
+
+nav {
+    z-index: 999;
+    position: sticky;
+    top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    background-color: var(--background2);
+    overflow: hidden;
+}
+
+nav a {
+    color: var(--foreground);
+    display: inline-block;
+    padding: 16px 0.4vw 20px 0.4vw;
+    text-align: left;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;
+}
+
+nav a:hover {
+    text-decoration-color: var(--foreground);
+    text-underline-offset: 0.35em;
+}
+
+nav a.active {
+    color: var(--link);
+    text-decoration-color: var(--link);
+    text-underline-offset: 0.35em;
+}
+
+/* #inset {
+  display: inline-block;
+  padding-left: 16px;
+} */
+
+#content {
+    padding-inline: 10vw;
+}
+
+a {
+    text-decoration: underline 0.1em rgba(205, 214, 244, 0.7);
+    text-underline-offset: 0.5em;
+    transition: color 300ms, text-decoration-color 300ms, text-underline-offset 300ms;
+}
+
+a:hover {
+    color: var(--link);
+    text-decoration-color: var(--linkhover);
+    text-underline-offset: 0.35em;
+}
+
+body {
+    background: var(--background);
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+span {
+    color: white;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2.25rem;
+}
+
+h3 {
+    font-size: 1.755rem;
+}
+
+a {
+    color: var(--link);
+    font-style: normal;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;
+}
+
+li,
+p,
+span {
+    font-size: 1.2rem;
+}
+
+#hero {
+    display: flex;
+    height: 100vh;
+    z-index: -1;
+    background: rgba(30, 30, 46, 0.2);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+
+.herocontent h1 {
+    font-size: 80px;
+    font-weight: 600;
+}
+
+.herocontent h1,
+h3 {
+    display: inline;
+}
+
+.herocontent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+}
+
+.herotext {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+
+.gradient {
+    background: linear-gradient(-45deg, #f4dbd6, #f0c6c6, #f5bde6, #c6a0f6, #ed8796, #ee99a0, #f5a97f) no-repeat fixed center;
+    background-size: 300% 300%;
+    animation: gradient 4s ease infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.content {
+    padding-left: 10vw;
+    padding-right: 10vw;
+    padding-bottom: 10vw;
+}
+
+/* content alignment */
+.contentflexboxleft,
+.contentflexboxright {
+    /* picture on left */
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    margin-block: 20px;
+}
+
+.contentleft,
+.contentright {
+    width: 50vw;
+    height: auto;
+    display: flex;
+    align-items: start;
+    margin-inline: 20px;
+}
+
+.contentleft {
+    justify-content: start;
+}
+
+.contentright {
+    justify-content: end;
+}
+
+.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contentleft ul,
+.contentright ul {
+    padding: 0px;
+}
+
+img,
+iframe,
+video {
+    max-height: 650px;
+    max-width: 100%;
+    object-fit: scale-down;
+    z-index: 1;
+    border: 3px solid rgba(30, 30, 46, 1);
+    border-radius: 10px;
+}
+
+/* following Hyperplexed tutorial for card */
+
+#cardholder {
+    display: flex;
+    justify-content: space-between;
+    margin-block: 20px;
+}
+
+.card {
+    aspect-ratio: 1 / 1.6;
+    border: 0.3vmin solid var(--link);
+    position: relative;
+    width: 30vmin;
+    border-radius: 1vw;
+}
+
+.card:hover:before {
+    background-position: 100% 100%;
+    transform: scale(1.08, 1.03);
+}
+
+.card:hover>.card-content {
+    background-position: -10% 0%;
+}
+
+.card:hover>.card-icon {
+    color: white;
+}
+
+.card:hover>.card-content>.card-subtitle>.card-subtitle-word {
+    opacity: 1;
+    transform: translateY(0%);
+    transition: opacity 0ms, transform 200ms cubic-bezier(.90, .06, .15, .90);
+}
+
+.card:before {
+    background: linear-gradient(130deg,
+            var(--background2) 0% 33%,
+            var(--g1) 66%,
+            var(--g2) 83.5%,
+            var(--g3) 100%);
+    background-position: 0% 0%;
+    background-size: 300% 300%;
+    content: "";
+    height: 100%;
+    left: 0px;
+    pointer-events: none;
+    position: absolute;
+    top: 0px;
+    transition: background-position 350ms ease, transform 350ms ease;
+    width: 100%;
+    z-index: 1;
+    border-radius: 1vw;
+}
+
+.card-content {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.2) 8%,
+            transparent 8%);
+    background-position: 0% 0%;
+    background-size: 5vmin 5vmin;
+    height: calc(100% - 8vmin);
+    padding: 4vmin;
+    position: relative;
+    transition: background-position 350ms ease;
+    width: calc(100% - 10vmin);
+    z-index: 2;
+}
+
+.card-title,
+.card-subtitle {
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0px;
+}
+
+.card-title {
+    font-size: 4vmin;
+    font-weight: 600;
+}
+
+.card-subtitle {
+    font-size: 2vmin;
+    margin-top: 2vmin;
+    font-weight: normal;
+}
+
+.card-subtitle-word {
+    display: inline-block;
+    margin: 0vmin 0.3vmin;
+    opacity: 0;
+    position: relative;
+    transform: translateY(40%);
+    transition: none;
+}
+
+.card-icon {
+    bottom: 0px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 5vmin;
+    left: 0px;
+    margin: 4vmin;
+    position: absolute;
+    transition: color 250ms ease;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.card-cross {
+    top: 0px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 5vmin;
+    right: 0px;
+    margin: 4vmin;
+    position: absolute;
+    transition: color 250ms ease;
+    z-index: 2;
+    cursor: pointer;
+}
+
+
+.overlay {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    background: rgba(17, 17, 27, 0.7);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+
+.modal {
+    top: 3%;
+    position: relative;
+    max-width: 40vw;
+    width: 100%;
+    height: 700px;
+    background-color: var(--background2);
+    border-radius: 12px;
+    padding: 4vmin;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.modal a
+
+/* button */
+    {
+    position: absolute;
+    bottom: 4vmin;
+    left: 4vmin;
+    padding: 14px 16px 14px 16px;
+    border-radius: 14px;
+    background-color: var(--foreground);
+    color: var(--background);
+    text-decoration: none;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0px;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+}
+
+
+code {
+    display: relative;
+    font-family: 'Inconsolata';
+    color: var(--foreground);
+}
+
+pre {
+    /* block of code similar to ```...``` in discord */
+    font-family: 'Inconsolata';
+    color: var(--foreground);
+    display: block;
+    border: 2px solid var(--foreground);
+    background-color: rgba(17, 17, 27, 0.3);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    border-radius: 12px;
+    padding: 20px;
+    white-space: pre-wrap;
+    font-size: 1.2rem;
+}
+
+.gridcardholder {
+    display: flex;
+    justify-content: center;
+    gap: 3.22vw;
+    margin-bottom: 3.22vw;
+}
+
+/* Responsiveness to phone screens */
+/* For really small mobile phones: */
+@media only screen and (max-width:568px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .herotext h1 {
+        line-height: 5rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+
+    p,
+    li,
+    span {
+        font-size: 1.05rem;
+        line-height: 1.6rem;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+
+    .card-subtitle-word {
+        font-size: 0.75rem;
+        line-height: 0.9rem;
+        font-weight: normal;
+    }
+}
+
+@media only screen and (max-width:767px) {
+    .card {
+        width: 50%;
+        margin-inline: auto;
+        margin-bottom: 10px;
+    }
+
+    /* For mobile phones: */
+    .content {
+        font-size: 1.3rem;
+        column-gap: 10px;
+        row-gap: 10px;
+    }
+
+    .modal {
+        max-height: 70vh;
+        max-width: 70vw;
+    }
+
+    .contentflexboxleft {
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+
+    .contentflexboxright {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .contentcenter {
+        width: 50vw;
+        max-width: 400px;
+        height: auto;
+    }
+
+    .contentleft,
+    .contentright {
+        justify-content: center;
+    }
+
+    .blogpost a {
+        font-size: 0.8rem;
+    }
+
+    .blogpost span {
+        font-size: 0.7rem;
+    }
+
+    pre {
+        /* block of code similar to ```...``` in discord */
+        font-size: 0.8rem;
+    }
+}
+
+@media only screen and (max-width:1024px) {
+
+    .contentright,
+    .contentleft,
+    .contentcenter {
+        width: 80vw;
+        margin: 0;
+        margin-bottom: 5vh;
+        margin-inline: 1.25vw;
+    }
+
+    #hero {
+        padding-inline: 13vw;
+    }
+
+    #canvas {
+        display: none;
+    }
+}
+
+@media only screen and (max-width:1366px) {
+    #cardholder {
+        flex-direction: column;
+    }
+}
+
+
+::-webkit-scrollbar {
+    width: 1.5em;
+    height: 1em;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background);
+    border-radius: 100vw;
+    margin-block: 3.5em;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--background2);
+    border: 0.35em solid var(--background);
+    border-radius: 100vw;
 }
