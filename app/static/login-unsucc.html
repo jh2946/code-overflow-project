@@ -12,26 +12,30 @@
         <a href="/register">Register</a>
         <a href="/logout">Logout</a>
     </header>
-    <h2>Login</h2>
-    <div>
-        <span>Login Unsuccessful. Please check email and password</span>
-        <!-- this is an error message, preferably put in red -->
+    <div class="login-cont">
+        <h2>Login</h2>
+        <div>
+            <span>Login Unsuccessful. Please check email and password</span>
+            <!-- this is an error message, preferably put in red -->
+        </div>
+        <div id="form-cont">
+            <form method="POST">
+                <div>
+                    <label for="email"><span>Email</span></label>
+                    <input type="text" name="email">
+                </div>
+                <div>
+                    <label for="password"><span>Password</span></label>
+                    <input type="password" name="password">
+                </div>
+                <div>
+                    <input type="checkbox" name="remember">
+                    <label for="remember"><span>Remember me</span></label>
+                </div>
+                <input type="submit">
+            </form>
+        </div>
     </div>
-    <form method="POST">
-        <div>
-            <label for="email"><span>Email</span></label>
-            <input type="text" name="email">
-        </div>
-        <div>
-            <label for="password"><span>Password</span></label>
-            <input type="password" name="password">
-        </div>
-        <div>
-            <input type="checkbox" name="remember">
-            <label for="remember"><span>Remember me</span></label>
-        </div>
-        <input type="submit">
-    </form>
 
 </body>
 </html>

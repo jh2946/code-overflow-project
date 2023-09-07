@@ -630,3 +630,7 @@ pre {
     border: 0.35em solid var(--background);
     border-radius: 100vw;
 }
+
+.login-cont{
+    text-align: center;
+}

@@ -12,26 +12,28 @@
         <a href="/register">Register</a>
         <a href="/logout">Logout</a>
     </header>
-    <h2>Login</h2>
-    <div>
-        <span>Your account has been created! You are now able to log in</span>
-        <!-- this is a success message, preferably put it in green -->
+    <div class="login-cont">
+        <h2>Login</h2>
+        <div>
+            <span>Your account has been created! You are now able to log in</span>
+            <!-- this is a success message, preferably put it in green -->
+        </div>
+        <form method="POST">
+            <div>
+                <label for="email"><span>Email</span></label>
+                <input type="text" name="email">
+            </div>
+            <div>
+                <label for="password"><span>Password</span></label>
+                <input type="password" name="password">
+            </div>
+            <div>
+                <input type="checkbox" name="remember">
+                <label for="remember"><span>Remember me</span></label>
+            </div>
+            <input type="submit">
+        </form>
     </div>
-    <form method="POST">
-        <div>
-            <label for="email"><span>Email</span></label>
-            <input type="text" name="email">
-        </div>
-        <div>
-            <label for="password"><span>Password</span></label>
-            <input type="password" name="password">
-        </div>
-        <div>
-            <input type="checkbox" name="remember">
-            <label for="remember"><span>Remember me</span></label>
-        </div>
-        <input type="submit">
-    </form>
 
 </body>
 </html>
