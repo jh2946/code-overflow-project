@@ -7,6 +7,8 @@ go to vscode, press ctrl + shift + p and type "Python interpreter" and choose th
 Open up the terminal in vscode, type pip install -r requirements.txt
 run the website by typing python app.py
 
+download the model [here](https://drive.google.com/file/d/1KRqgUHN0cHoz_9lmi36EREdUL8lxkzyk/view?usp=sharing), then move it to the root directory (the one containing main.py as a child). it's too big to fit in this github repo
+
 
 
 
