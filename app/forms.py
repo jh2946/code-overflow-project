@@ -26,10 +26,10 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email',
+    email = StringField('',
                         validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    remember = BooleanField('Remember Me')
+    password = PasswordField('', validators=[DataRequired()])
+    remember = BooleanField('')
     submit = SubmitField('Login')
 
 class UploadForm(FlaskForm):

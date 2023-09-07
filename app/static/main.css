@@ -39,51 +39,45 @@ header {
     background-color: darkgreen;
 } */
 
-/* @import url('https://fonts.googleapis.com/css?family=Inconsolata:wght@300&display=swap'); */
+@import url('https://fonts.googleapis.com/css?family=Inter');
+
 /* light mode */
 html {
     scroll-behavior: smooth;
 }
 
-input[type=button], input[type=submit], input[type=reset], input[type=file] {
-    background-color: #04AA6D;
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-decoration: none;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
 
-:root {
-    --background: #dce0e8;
-    --background2: #e6e9ef;
-    --foreground: #4c4f69;
-    --date: #ea76cb;
-    --navbar: #e6e9ef;
-    --navsel: #dd7878;
-    --navhover: #dc8a78;
-    --link: #179299;
-    --linkhover: #40a02b;
-}
 
 /* dark mode*/
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #11111b;
-        --background2: #1e1e2e;
-        --foreground: rgba(205, 214, 244, 1);
-        --date: #f5c2e7;
-        --navbar: #1e1e2e;
-        --navsel: #ca9ee6;
-        --navhover: #cba6f7;
-        --link: var(--date);
-        --linkhover: #f5c2e7;
-        --border: rgb(3, 169, 244);
-        --g1: rgb(98, 0, 234);
-        --g2: rgb(236, 64, 122);
-        --g3: rgb(253, 216, 53);
-    }
+
+:root {
+    --background: #0F0f0f;
+    --background2: #262626;
+    --foreground: #8aac8b;
+    --link: #8aac8b;
+    --linkhover: #e7e7e7;
+}
+
+input[type=button],
+input[type=submit],
+input[type=reset],
+input[type=file] {
+    font-family: Inter;
+    background-color: var(--foreground);
+    border-radius: 12px;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+input {
+    border: 0;
+    outline: 0;
+}
+
+input:focus {
+    outline: none !important;
 }
 
 nav {
@@ -95,6 +89,7 @@ nav {
     width: 100%;
     background-color: var(--background2);
     overflow: hidden;
+    padding-left: 16px;
 }
 
 nav a {
@@ -111,8 +106,8 @@ nav a:hover {
 }
 
 nav a.active {
-    color: var(--link);
-    text-decoration-color: var(--link);
+    color: var(--foreground);
+    text-decoration-color: var(--foreground);
     text-underline-offset: 0.35em;
 }
 
@@ -126,7 +121,7 @@ nav a.active {
 }
 
 a {
-    text-decoration: underline 0.1em rgba(205, 214, 244, 0.7);
+    text-decoration: underline 0.1em var(--foreground);
     text-underline-offset: 0.5em;
     transition: color 300ms, text-decoration-color 300ms, text-underline-offset 300ms;
 }
@@ -183,9 +178,9 @@ span {
     display: flex;
     height: 100vh;
     z-index: -1;
-    background: rgba(30, 30, 46, 0.2);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
+    /* background: rgba(30, 30, 46, 0.2); */
+    /* -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px); */
 }
 
 .herocontent h1 {
