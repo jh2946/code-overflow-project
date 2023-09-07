@@ -30,6 +30,18 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
+@app.route('/submit', methods=['GET', 'POST'])
+def submit():
+    form = UploadForm()
+    # if form.validate_on_submit():
+    #     file = request.files['photo']
+    #     filename = secrets.token_urlsafe(16) + ""
+    #     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    #     print(url_for('uploads', filename=filename))
+    # else:
+    #     print('error', form.errors) separate uploading logic from page and form to another route
+    return render_template('submit.html', title='Submit', form=form)
+ # submit just loads the page, then the post request is to upload/ then predict/ which then loads results.html
 start = [0]
 passed = [0]
 pack = [[]]
@@ -260,17 +272,6 @@ def login():
 # def uploads():
 #     return send_file(os.path.join(app.config['UPLOAD_FOLDER'], request.args['filename']))
 
-@app.route('/submit', methods=['GET', 'POST'])
-def submit():
-    form = UploadForm()
-    # if form.validate_on_submit():
-    #     file = request.files['photo']
-    #     filename = secrets.token_urlsafe(16) + ""
-    #     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    #     print(url_for('uploads', filename=filename))
-    # else:
-    #     print('error', form.errors) separate uploading logic from page and form to another route
-    return render_template('submit.html', title='Submit', form=form)
 
 @app.route('/logout')
 def logout():

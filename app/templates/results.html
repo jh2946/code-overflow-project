@@ -1,98 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Food Image Recognition & Nutrition Visualization</title>
-    <!-- <style type="text/css">.div-inline{ display:inline }</style> -->
-    <link
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
-            rel="stylesheet"
-    />
-    <style>
-        .container {
-            margin: 30px auto;
-            width: 1500px;
-            height: 100px;
-        }
-
-        polyline {
-            fill: none;
-            stroke: #000000;
-            stroke-width: 2px;
-            stroke-dasharray: 5px;
-        }
-
-        fieldset {
-            border: 2px solid black;
-            margin: auto;
-            padding: 30px;
-            text-align: center;
-        }
-
-        h1.home_head {
-            text-align: center;
-            color: black;
-        }
-
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #ccc;
-        }
-
-        li {
-            float: left;
-        }
-
-        li a {
-            display: block;
-            color: black;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td,
-        th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        li a:hover {
-            background-color: #111;
-        }
-
-        /*body {
-              background-color: #FDEDEC;
-          }*/
-    </style>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-</head>
-<body>
-<div class="jumbotron text-center" style="margin-bottom: 0">
-    <h1>Results</h1>
-    <!-- <p>We help you know what you eat and recommend what you should eat.</p>  -->
-</div>
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Results</h1>
 
 <ul>
     <!-- <li><a class="active" href="/">Home</a></li> -->`
     <li>
-        <a class="active" href="/recognize"
-        >Click here to go back and upload more images.</a
-        >
+        <a class="active" href="/submit">Click here to go back and upload more images.</a>
     </li>
-    <!-- <li><a href="#contact">联系</a></li>
-    <li><a href="#about">关于</a></li> -->
 </ul>
 
 {% for p in pack %}
@@ -162,3 +76,4 @@
         </div>
 </body>
 </html>
+{% endblock %}
