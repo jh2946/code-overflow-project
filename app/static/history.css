@@ -1,0 +1,28 @@
+div.spacing {
+    margin-bottom: 60px;
+}
+
+div.history-unit {
+    display: flex;
+    margin: 30px auto;
+    width: 60vw;
+    background-color: #284028;
+    padding: 30px;
+    border-radius: 30px;
+    color: white;
+}
+
+div.image {
+    width: 30vw;
+    display: flex;
+    align-items: center;
+}
+
+div.description {
+    flex: 3;
+}
+
+img {
+    max-width: 20vw;
+    max-height: 20vh;
+}
