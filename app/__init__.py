@@ -10,7 +10,7 @@ import csv
 import os
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
-app = Flask(__name__, template_folder=tmpl_dir)
+app = Flask(__name__, template_folder=tmpl_dir, static_url_path="/app/static")
 
 if __name__ == "__main__":
     import click
@@ -39,6 +39,11 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 UPLOAD_FOLDER = 'app/static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+try:
+    os.makedirs(app.config['UPLOAD_FOLDER'])
+except OSError:
+    pass
+
 # app.config['UPLOAD_FOLDER'] = os.path.abspath('app/uploads/')
 ALLOWED_EXTENSIONS = {'png', 'jpeg', 'jpg'}
 app.app_context().push()
