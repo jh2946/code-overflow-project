@@ -156,3 +156,7 @@ Project Link: [https://github.com/MaharshSuryawala/Food-Image-Recognition](https
 [contributors-url]: https://github.com/MaharshSuryawala/Food-Image-Recognition/graphs/contributors
 [license-shield]: https://img.shields.io/github/license/MaharshSuryawala/Food-Image-Recognition?style=flat-square?style=flat-square
 [license-url]: https://github.com/MaharshSuryawala/Food-Image-Recognition?style=flat-square/blob/master/LICENSE.txt
+
+## Credits
+Maharsh Suryawala - provided food image recognition repository - https://github.com/MaharshSuryawala/Food-Image-Recognition/tree/master 
+CoreyMSchafer - provided boilerplate - https://github.com/CoreyMSchafer/code_snippets/tree/master/Python/Flask_Blog/06-Login-Auth
